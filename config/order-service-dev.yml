@@ -1,10 +1,6 @@
-sp:
-  user-service:
-    users: "[{\"id\":7, \"username\":\"abc\",\"password\":\"123\"},{\"id\":8, \"username\":\"def\",\"password\":\"456\"},{\"id\":9, \"username\":\"ghi\",\"password\":\"789\"}]"
-
 spring:
   application:
-    name: user-service
+    name: order-service
   cloud:
     config:
       override-none: true   
@@ -14,9 +10,18 @@ spring:
     username: admin
     password: admin    
 server:
-  port: 8101
+  port: 8201
   
 eureka:
   client:
     service-url:
       defaultZone: http://eureka1:2001/eureka,http://eureka2:2002/eureka
+feign:
+  hystrix:
+    enabled: true
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
